@@ -1,0 +1,2 @@
+class MailgunController < ApplicationController
+end
