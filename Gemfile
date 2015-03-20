@@ -28,6 +28,9 @@ gem 'paperclip', '~> 4.2'
 # Use mysql2 ad the database for Active Record
 gem 'mysql2'
 
+# Try to fix Heroku's annoying logging bug :'(
+gem 'rails_12factor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
