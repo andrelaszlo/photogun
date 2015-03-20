@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20150320114044) do
 
   create_table "photos", force: :cascade do |t|
+    t.string   "sender"
     t.string   "title"
     t.string   "mime"
     t.datetime "created_at", null: false

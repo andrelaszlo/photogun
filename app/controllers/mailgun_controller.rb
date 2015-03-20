@@ -10,6 +10,14 @@ class MailgunController < ApplicationController
     message = MailgunMessage.from_post params
 
     if message.verified?
+      puts "Got message #{message}"
+
+      p = Photo.new(
+        title: message.subject,
+        sender: message.sender
+      )
+      p.save
+
       return render inline: "ok!"
     end
 
