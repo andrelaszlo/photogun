@@ -1,0 +1,8 @@
+<dt>
+  <%= photo.title %>
+</dt>
+<dd>
+  <%= link_to(photo.picture.url, title: photo.picture.original_filename) do %>
+   <%= image_tag photo.picture.url(:thumb) %>
+  <% end %>
+</dd>
