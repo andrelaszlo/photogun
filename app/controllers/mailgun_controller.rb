@@ -12,13 +12,16 @@ class MailgunController < ApplicationController
     if message.verified?
       puts "Got message #{message}"
 
-      p = Photo.new(
-        title: message.subject,
-        sender: message.sender
-      )
-      p.save
+      message.attachments.each do |attachment|
+        # TODO: wrap this in a begin/rescue
+        Photo.create(
+          title: message.subject,
+          sender: message.sender,
+          picture: attachment
+        )
+      end
 
-      return render inline: "ok!"
+      return render inline: "Ok"
     end
 
     render inline: "Bad signature", :status => :not_acceptable

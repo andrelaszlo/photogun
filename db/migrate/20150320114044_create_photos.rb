@@ -3,7 +3,6 @@ class CreatePhotos < ActiveRecord::Migration
     create_table :photos do |t|
       t.string :sender
       t.string :title
-      t.string :mime
 
       t.timestamps null: false
     end
