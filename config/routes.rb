@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :photos
+
+  post '/mailgun/webhook'
+
+  get '/mailgun/webhook', to: 'mailgun#webhook', via: :post
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
