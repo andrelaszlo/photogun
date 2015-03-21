@@ -31,6 +31,9 @@ gem 'mysql2'
 # Try to fix Heroku's annoying logging bug :'(
 gem 'rails_12factor'
 
+# Fontawesome icons
+gem 'font-awesome-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

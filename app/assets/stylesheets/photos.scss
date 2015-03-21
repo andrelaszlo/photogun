@@ -1,3 +1,96 @@
-// Place all the styles related to the photos controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+$font-stack: 'Raleway', Helvetica, sans-serif;
+$background-color: #f5f7fa;
+$primary-color: #b0bac9;
+
+body {
+  background-color: $background-color;
+  font: 100% $font-stack;
+  font-size: 16pt;
+  color: $primary-color;
+}
+
+.content {
+  width: 1200px;
+  background-color: white;
+  margin: 70px auto 100px;
+
+  .photo.big {
+    text-align: center;
+    padding-bottom: 20px;
+
+    h2 {
+      font-weight: normal;
+    }
+  }
+
+  .header {
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      text-transform: uppercase;
+      color: $primary-color;
+      padding: 25px 30px;
+      font-size: 28px;
+      margin: 0px;
+    }
+  }
+
+  .footer {
+    clear: both;
+    padding: 25px;
+
+    text-align: center;
+
+    i.fa {
+      margin-left: 20px;
+    }
+  }
+}
+
+ul {
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+
+  li {
+    float: left;
+    list-style-type: none;
+    list-style-position: inside;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+
+    a {
+      img {
+        display: block;
+      }
+
+      &::after {
+        content: "";
+        float: left;
+        position: relative;
+        width: 400px;
+        height: 300px;
+        margin-top: -300px;
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1;
+
+
+        background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 63%, rgba(0,0,0,0.22) 100%); /* FF3.6+ */
+        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(63%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.22))); /* Chrome,Safari4+ */
+        background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 63%,rgba(0,0,0,0.22) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 63%,rgba(0,0,0,0.22) 100%); /* Opera 12+ */
+        background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 63%,rgba(0,0,0,0.22) 100%); /* IE10+ */
+        background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 63%,rgba(0,0,0,0.22) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#38000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+      }
+
+      &:hover::after {
+        content: none;
+      }
+    }
+  }
+}
+
+div.clear {
+    clear: both;
+}

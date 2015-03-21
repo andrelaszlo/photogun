@@ -1,0 +1,9 @@
+<div class="photo big">
+  <%= link_to root_url do %>
+    <%= image_tag @photo.picture.url(:big), :class => 'big' %>
+  <% end %>
+  <h2>
+    <%= @photo.title %>
+  </h2>
+</div>
+
