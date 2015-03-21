@@ -9,21 +9,21 @@ class MailgunController < ApplicationController
   def webhook
     message = MailgunMessage.from_post params
 
-    if message.verified?
-      puts "Got message #{message}"
-
-      message.attachments.each do |attachment|
-        # TODO: wrap this in a begin/rescue
-        Photo.create(
-          title: message.subject,
-          sender: message.sender,
-          picture: attachment
-        )
-      end
-
-      return render inline: "Ok"
+    if message.nil? || ! message.verified?
+         return render inline: "Bad signature", :status => :not_acceptable
     end
 
-    render inline: "Bad signature", :status => :not_acceptable
+    puts "Got message #{message}"
+
+    message.attachments.each do |attachment|
+      # TODO: wrap this in a begin/rescue
+      Photo.create(
+        title: message.subject,
+        sender: message.sender,
+        picture: attachment
+      )
+    end
+
+    return render inline: "Ok"
   end
 end
