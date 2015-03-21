@@ -1,0 +1,23 @@
+@import 'definitions';
+
+body {
+  background-color: $background-color;
+  font: 100% $font-stack;
+  font-size: 16pt;
+  color: #333;
+}
+
+.content {
+  width: 1200px;
+  background-color: white;
+  margin: 70px auto 100px;
+}
+
+div.clear {
+    clear: both;
+}
+
+a {
+  text-decoration: none;
+  color: #33f;
+}

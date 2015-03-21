@@ -1,0 +1,32 @@
+@import 'definitions';
+
+.about {
+  padding: 0 30px 30px;
+  text-align: justify;
+
+  .social {
+    text-align: center;
+    margin-top: 40px;
+
+    a {
+      margin-right: 10px;
+
+      &:last-child {
+        margin-right: 0; // It's either centered or it's not!
+      }
+
+      i.fa {
+        font-size: 30px;
+        color: $primary-color;
+
+        /*
+        &.fa-stack-overflow { color: #fa7a15; }
+        &.fa-github { color: #4183c4; }
+        &.fa-linkedin { color: #0976b4; }
+        &.fa-twitter { color: #55acee; }
+        &.fa-tumblr { color: #35465c; }
+        */
+      }
+    }
+  }
+}

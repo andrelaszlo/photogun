@@ -1,50 +1,36 @@
-$font-stack: 'Raleway', Helvetica, sans-serif;
-$background-color: #f5f7fa;
-$primary-color: #b0bac9;
+@import 'definitions';
 
-body {
-  background-color: $background-color;
-  font: 100% $font-stack;
-  font-size: 16pt;
-  color: $primary-color;
+
+.photo.big {
+  text-align: center;
+  padding-bottom: 20px;
+
+  h2 {
+    font-weight: normal;
+  }
 }
 
-.content {
-  width: 1200px;
-  background-color: white;
-  margin: 70px auto 100px;
+.header {
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    padding: 15px 30px 25px;
+    margin: 0px;
 
-  .photo.big {
-    text-align: center;
-    padding-bottom: 20px;
-
-    h2 {
-      font-weight: normal;
-    }
-  }
-
-  .header {
-    h1 {
-      font-family: 'Montserrat', sans-serif;
-      text-transform: uppercase;
+    a {
       color: $primary-color;
-      padding: 25px 30px;
       font-size: 28px;
       margin: 0px;
     }
-  }
-
-  .footer {
-    clear: both;
-    padding: 25px;
-
-    text-align: center;
 
     i.fa {
-      margin-left: 20px;
+      float: right;
+      font-size: 40px;
+      margin-top: 10px;
     }
   }
 }
+
 
 ul {
   background-color: white;
@@ -62,6 +48,8 @@ ul {
     a {
       img {
         display: block;
+        width: 400px;
+        height: 300px;
       }
 
       &::after {
@@ -89,8 +77,4 @@ ul {
       }
     }
   }
-}
-
-div.clear {
-    clear: both;
 }
