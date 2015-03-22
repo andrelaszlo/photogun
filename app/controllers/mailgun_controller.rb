@@ -15,15 +15,17 @@ class MailgunController < ApplicationController
 
     puts "Got message #{message}"
 
+    photos = []
     message.attachments.each do |attachment|
       # TODO: wrap this in a begin/rescue
-      Photo.create(
+      photo = Photo.create(
         title: message.subject,
         sender: message.sender,
         picture: attachment
       )
+      photos << photo.id
     end
 
-    return render inline: "Ok"
+    return render inline: "Ok %s" % photos.join(", ")
   end
 end
