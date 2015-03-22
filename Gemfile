@@ -23,7 +23,11 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'puma', '~> 2.11'
-gem 'paperclip', '~> 4.2'
+
+# 2.0 is not compatible with paperclip see
+# http://ruby.awsblog.com/post/TxFKSK2QJE6RPZ/Upcoming-Stable-Release-of-AWS-SDK-for-Ruby-Version-2
+gem 'aws-sdk', '< 2.0'
+gem 'paperclip'
 
 # Use mysql2 ad the database for Active Record
 gem 'mysql2'
