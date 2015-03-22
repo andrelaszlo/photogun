@@ -29,6 +29,10 @@ gem 'puma', '~> 2.11'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
 
+# Use Resque for long running jobs
+gem 'resque', "~> 1.22.0"
+gem 'delayed_paperclip', '~> 2.9.1'
+
 # Use mysql2 ad the database for Active Record
 gem 'mysql2'
 

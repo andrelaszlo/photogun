@@ -8,4 +8,6 @@ class Photo < ActiveRecord::Base
                     }
 
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+
+  process_in_background :picture
 end
