@@ -1,7 +1,4 @@
-require 'test_helper'
-
 class MailgunMessageTest < ActionController::TestCase
-
   # Data expected to be correct, with a spoofed API key of course
   @@data = {
     :api_key => "key-3760e2f8c5971a69fb1fce0bfcc209e1",
@@ -26,7 +23,7 @@ class MailgunMessageTest < ActionController::TestCase
       bad_data = @@data.clone
       bad_data[k] = ''
       message = MailgunMessage.from_post bad_data, api_key: bad_data[:api_key]
-      assert_not message.verified?, "Message signature is bad because %p changed" % k
+      assert_nil message, "Message signature is bad because %p changed" % k
     end
   end
 

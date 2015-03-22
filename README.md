@@ -11,6 +11,7 @@ Developed using Ruby 2.0.0 and Rails 4.2.1. Se `Gemfile` for full list of depend
 See `.env.example`
 
 * `EMAIL_WHITELIST` is a semicolon separated list of regexps. Incoming emails with senders that don't match an entry in this list will be rejected. Set to `.*` to allow all senders.
+* `PHOTOGUN_UPLOAD_EMAIL` is the email defined in Mailgun to route messages to Photogun.
 
 ## Running tests
 

@@ -3,9 +3,10 @@ class MailgunMessage
   attr_reader :sender, :subject, :attachments
 
   def initialize(token, timestamp, signature, sender, subject, attachments, api_key: nil)
-    @api_key = api_key || ENV['MAILGUN_APIKEY'] || ''
-    if @api_key == ''
-      ::Rails.logger.warn "No mailgun API key configured"
+    @api_key = api_key || ENV['MAILGUN_APIKEY']
+    if @api_key.nil?
+         ::Rails.logger.warn "No mailgun API key configured"
+         @api_key = ''
     end
 
     # Signature data
