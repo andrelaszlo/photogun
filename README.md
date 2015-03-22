@@ -1,27 +1,37 @@
-* Ruby version
+# Photogun
 
-Developed using Ruby 2.0.0 and Rails 4.2.1.
+An email-driven photo gallery.
 
-* System dependencies
+## System dependencies
 
-* Configuration
+Developed using Ruby 2.0.0 and Rails 4.2.1. Se `Gemfile` for full list of dependencies.
 
-* Database creation
+## Configuration
 
-* Database initialization
+See `.env.example`
 
-* How to run the test suite
+## Running tests
 
-* Services (job queues, cache servers, search engines, etc.)
+TODO
 
-Built for Heroku. The services used are IronMQ, JawsDB MYSQL. To add them:
+## Services
 
-```
-heroku addons:add ironmq
-heroku addons:add jawsdb
+### Storage
 
-```
+Uses S3 for photo storage.
 
-* Deployment instructions
+### Email
 
-* ...
+Photos are uploaded using Mailgun's email forward webhook.
+
+## Deployment
+
+Push to Heroku, see `.env.example' for necessary environment variables.
+
+Add these addons
+
+* JawsDB, `heroku addons:add jawsdbheroku addons:add jawsdb`, and update the DATABASE_URL to JAWSDB_URL but change `mysql://` to `mysql2://`
+
+## Known limitations
+
+* Only US S3 buckets works for now
