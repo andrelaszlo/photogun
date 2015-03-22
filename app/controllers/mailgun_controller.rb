@@ -10,7 +10,11 @@ class MailgunController < ApplicationController
     message = MailgunMessage.from_post params
 
     if message.nil? || ! message.verified?
-         return render inline: "Bad signature", :status => :not_acceptable
+      return failure "Bad signature"
+    end
+
+    if !EmailWhitelist.whitelisted? message.sender
+      return failure "Sender not allowed"
     end
 
     puts "Got message #{message}"
@@ -32,9 +36,18 @@ class MailgunController < ApplicationController
     end
 
     if photos.empty?
-         return render inline: "No photos saved"
+         return success "No photos saved"
     end
 
-    render inline: "Ok %s" % photos.join(", ")
+    success "Ok %s" % photos.join(", ")
+  end
+
+  private
+  def success(message)
+    render inline: message
+  end
+
+  def failure(message)
+    render inline: message, :status => :not_acceptable
   end
 end
