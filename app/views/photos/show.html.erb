@@ -3,7 +3,8 @@
     <%= image_tag @photo.picture.url(:big), :class => 'big' %>
   <% end %>
   <h2>
-    <%= @photo.title %>
+    &ldquo;<%= @photo.title %>&rdquo;
   </h2>
+  <%= redact_email @photo.sender %>
 </div>
 
