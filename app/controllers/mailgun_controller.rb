@@ -17,15 +17,24 @@ class MailgunController < ApplicationController
 
     photos = []
     message.attachments.each do |attachment|
-      # TODO: wrap this in a begin/rescue
-      photo = Photo.create(
-        title: message.subject,
-        sender: message.sender,
-        picture: attachment
-      )
-      photos << photo.id
+      begin
+        photo = Photo.create(
+          title: message.subject,
+          sender: message.sender,
+          picture: attachment
+        )
+        photos << photo.id
+      rescue => e
+        puts "Exception while saving photo"
+        puts e
+        puts e.backtrace
+      end
     end
 
-    return render inline: "Ok %s" % photos.join(", ")
+    if photos.empty?
+         return render inline: "No photos saved"
+    end
+
+    render inline: "Ok %s" % photos.join(", ")
   end
 end
