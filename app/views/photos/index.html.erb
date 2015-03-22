@@ -1,4 +1,8 @@
-<ul>
-  <%= render @photos %>
-</ul>
-<div class="clear">
+<% if @photos.empty? %>
+  <div class="empty">There <%= link_to "will be", :controller => :about %> pictures here!</div>
+<% else %>
+  <ul>
+    <%= render @photos %>
+  </ul>
+  <div class="clear">
+<% end %>
