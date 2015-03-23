@@ -39,6 +39,7 @@ class MailgunController < ApplicationController
          return success "No photos saved"
     end
 
+    EmailSuccessJob.perform_later message.sender, photos
     success "Ok %s" % photos.join(", ")
   end
 

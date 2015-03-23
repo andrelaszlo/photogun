@@ -33,6 +33,10 @@ gem 'paperclip'
 gem 'resque', "~> 1.22.0"
 gem 'delayed_paperclip', '~> 2.9.1'
 
+# For sending mails
+gem 'mailgun-ruby'
+gem 'sanitize'
+
 # Use mysql2 ad the database for Active Record
 gem 'mysql2'
 
