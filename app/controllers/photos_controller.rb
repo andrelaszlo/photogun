@@ -1,6 +1,6 @@
 class PhotosController < ApplicationController
   def index
-    @photos = Photo.order(created_at: :desc).first(99)
+    @photos = Photo.where(:picture_processing => false).order(:created_at => :desc).limit(99)
   end
 
   def show

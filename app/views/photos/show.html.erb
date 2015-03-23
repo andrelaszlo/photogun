@@ -1,10 +1,13 @@
 <div class="photo big">
-  <%= link_to root_url do %>
-    <%= image_tag @photo.picture.url(:big), :class => 'big' %>
+  <% if @photo.picture_processing? %>
+    This picture is still processing, come back in a minute or so.
+  <% else %>
+    <%= link_to root_url do %>
+      <%= image_tag @photo.picture.url(:big), :class => 'big' %>
+    <% end %>
+    <h2>
+      &ldquo;<%= @photo.title %>&rdquo;
+    </h2>
+    <%= redact_email @photo.sender %>
   <% end %>
-  <h2>
-    &ldquo;<%= @photo.title %>&rdquo;
-  </h2>
-  <%= redact_email @photo.sender %>
 </div>
-
