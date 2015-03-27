@@ -29,8 +29,9 @@ gem 'puma', '~> 2.11'
 gem 'aws-sdk', '< 2.0'
 gem 'paperclip'
 
-# Use Resque for long running jobs
-gem 'resque', "~> 1.22.0"
+# Use Delayed Job for long running jobs
+gem 'delayed_job_active_record'
+
 gem 'delayed_paperclip', '~> 2.9.1'
 
 # For sending mails
