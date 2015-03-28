@@ -35,7 +35,7 @@ class MailgunController < ApplicationController
       end
     end
 
-    if photos.empty?
+    if photos.reject(&:nil?).empty?
          return success "No photos saved"
     end
 
