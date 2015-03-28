@@ -1,5 +1,5 @@
 <div class="photo big">
-  <% if @photo.picture_processing? %>
+  <% if ! @photo.completed? %>
     This picture is still processing, come back in a minute or so.
   <% else %>
     <%= link_to root_url do %>

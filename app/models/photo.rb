@@ -22,4 +22,9 @@ class Photo < ActiveRecord::Base
     # deleted.
     PhotoVerifyJob.perform_later self.id, 0
   end
+
+  # Check if the photo should show up in the gallery
+  def completed?
+    !self.picture_processing? && self.delayed_processing_ok
+  end
 end
