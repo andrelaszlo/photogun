@@ -14,6 +14,7 @@ class MailgunController < ApplicationController
     end
 
     if !EmailWhitelist.whitelisted? message.sender
+      EmailNotificationJob.perform_later message.sender, 'not_whitelisted', {}
       return failure "Sender not allowed"
     end
 
@@ -36,7 +37,8 @@ class MailgunController < ApplicationController
     end
 
     if photos.reject(&:nil?).empty?
-         return success "No photos saved"
+      EmailNotificationJob.perform_later message.sender, 'no_photos', {}
+      return success "No photos saved"
     end
 
     EmailSuccessJob.perform_later message.sender, photos

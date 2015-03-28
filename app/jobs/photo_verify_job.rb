@@ -1,7 +1,7 @@
 class PhotoVerifyJob < ActiveJob::Base
   queue_as :default
 
-  MAX_RETRIES = 5
+  MAX_RETRIES = (ENV['VERIFY_MAX_RETRIES'] || 5).to_i
 
   rescue_from(Exception) do |exception|
     puts "Exception in %s" % self.class
@@ -29,6 +29,7 @@ class PhotoVerifyJob < ActiveJob::Base
           PhotoVerifyJob.set(wait: delay).perform_later(photo_id, retries+1)
         else
           puts "Max number of retries #{MAX_RETRIES} reached, giving up"
+          EmailNotificationJob.perform_later photo.sender, 'validation_failed', {:title => photo.title}
           photo.delete
         end
         return
@@ -37,6 +38,9 @@ class PhotoVerifyJob < ActiveJob::Base
       puts "#{count}/#{expected_count} styles saved"
       photo.delayed_processing_ok = true
       photo.save
+      EmailNotificationJob.perform_later(photo.sender, 'validation_ok',
+                                         {:title => photo.title,
+                                          :id => photo_id})
 
     rescue => e
       puts e

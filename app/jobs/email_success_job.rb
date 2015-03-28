@@ -17,7 +17,6 @@ class EmailSuccessJob < ActiveJob::Base
       return
     end
 
-    # First, instantiate the Mailgun Client with your API key
     mailgun = Mailgun::Client.new ENV['MAILGUN_APIKEY']
 
     # Apparently, hooking into the template/rendering mechanism outside of a
@@ -46,14 +45,12 @@ class EmailSuccessJob < ActiveJob::Base
 
     text = Sanitize.fragment content
 
-    # Define your message parameters
     message = {:from    => 'noreply@pixel.0x81.com',
                :to      => recipient,
                :subject => 'Your photos were uploaded',
                :html    => content,
                :text    => text}
 
-    # Send your message through the client
     mailgun.send_message("pixel.0x81.com", message)
 
     puts "Email sent"
