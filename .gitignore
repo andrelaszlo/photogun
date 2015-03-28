@@ -20,3 +20,6 @@
 /tmp
 .#*
 public/system/*
+
+# Coverage
+coverage/*
