@@ -1,7 +1,7 @@
 module EmailWhitelist
   def self.whitelisted?(email, whitelist: nil)
     if whitelist.nil?
-         whitelist = ENV['EMAIL_WHITELIST'] || ''
+         whitelist = Rails.application.secrets.email_whitelist || ''
     end
     if whitelist.empty?
          puts "EMAIL_WHITELIST is empty"

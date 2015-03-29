@@ -92,9 +92,12 @@ GEM
     mailgun-ruby (1.0.3)
       json (~> 1.8)
       rest-client (~> 1.6)
+    metaclass (0.0.4)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     multi_json (1.11.0)
     mysql2 (0.3.18)
     netrc (0.10.3)
@@ -206,6 +209,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mailgun-ruby
+  mocha
   mysql2
   paperclip
   puma (~> 2.11)

@@ -3,7 +3,7 @@ module PhotosHelper
   # user@example.com will be u...r@example.com
   def redact_email(email)
     name, domain = email.split '@'
-    redacted = "%s...%s" % [name[0], name[-1]]
+    redacted = "%s..." % name[0]
     "#{redacted}@#{domain}"
   end
 end

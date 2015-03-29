@@ -86,4 +86,6 @@ Rails.application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
+
+  config.active_job.queue_adapter = :delayed_job
 end

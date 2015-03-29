@@ -71,5 +71,8 @@ group :development, :test do
 
   # Code coverage tool
   gem 'simplecov', :require => false
+
+  # Mocking/stubbing framework
+  gem "mocha"
 end
 

@@ -4,9 +4,11 @@ require 'uri'
 # Provide object count for Paperclip's S3 storage
 class S3Helper
   def initialize
-    AWS.config access_key_id: ENV['AWS_ACCESS_KEY_ID'], secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    secrets = Rails.application.secrets
+    AWS.config(access_key_id: secrets.aws_access_key_id,
+               secret_access_key: secrets.aws_secret_access_key)
     s3 = AWS::S3.new
-    @bucket = s3.buckets[ENV['S3_BUCKET_NAME']]
+    @bucket = s3.buckets[secrets.s3_bucket_name]
   end
 
   # Return the number of objects for a Paperclip url

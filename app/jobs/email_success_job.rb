@@ -12,12 +12,14 @@ class EmailSuccessJob < ActiveJob::Base
 
   def perform(recipient, photo_ids)
 
-    if ENV['MAILGUN_APIKEY'].nil?
+    apikey = Rails.application.secrets.mailgun_api_key
+
+    if apikey.nil?
       puts "MAILGUN_APIKEY not set"
       return
     end
 
-    mailgun = Mailgun::Client.new ENV['MAILGUN_APIKEY']
+    mailgun = Mailgun::Client.new apikey
 
     # Apparently, hooking into the template/rendering mechanism outside of a
     # controller isn't so easy, so the html for the email will just be built

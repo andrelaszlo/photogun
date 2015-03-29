@@ -27,7 +27,7 @@ class EmailWhitelistTest < ActionController::TestCase
   end
 
   test "environment whitelist" do
-    ENV['EMAIL_WHITELIST'] = 'foo@bar\.com'
+    Rails.application.secrets.email_whitelist = 'foo@bar\.com'
     assert @w.whitelisted? "foo@bar.com"
   end
 end

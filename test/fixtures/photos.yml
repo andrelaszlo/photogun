@@ -1,0 +1,23 @@
+completed:
+  title: 'completed'
+  sender: 'foo@example.com'
+  picture_processing: false
+  delayed_processing_ok: true
+
+also_completed:
+  title: 'completed 2'
+  sender: 'foo@example.com'
+  picture_processing: false
+  delayed_processing_ok: true
+
+processing:
+  title: 'processing'
+  sender: 'foo@example.com'
+  picture_processing: true
+  delayed_processing_ok: false
+
+not_verified:
+  title: 'not verified'
+  sender: 'foo@example.com'
+  picture_processing: false
+  delayed_processing_ok: false

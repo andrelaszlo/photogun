@@ -13,7 +13,7 @@ class EmailNotificationJob < ActiveJob::Base
   def perform(recipient, type, parameters)
     type = type.to_sym  # Active Job argument serialization doesn't support symbols
 
-    if ENV['MAILGUN_APIKEY'].nil?
+    if Rails.application.secrets.mailgun_api_key.nil?
       puts "MAILGUN_APIKEY not set"
       return
     end
@@ -55,7 +55,6 @@ class EmailNotificationJob < ActiveJob::Base
                :html    => content,
                :text    => text }
 
-    mailgun = Mailgun::Client.new ENV['MAILGUN_APIKEY']
     mailgun.send_message("pixel.0x81.com", message)
   end
 end

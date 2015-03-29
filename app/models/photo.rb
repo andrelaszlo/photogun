@@ -13,18 +13,28 @@ class Photo < ActiveRecord::Base
 
   process_in_background :picture
 
-  after_post_process :post_process_finished
-
-  def post_process_finished(*args)
-    # Unfortunately the after_post_process seems to run before post processing
-    # is actually finished, if delayed paperclip is used. This job will verify
-    # that the picture is uploaded to S3 correctly, otherwise the photo will be
-    # deleted.
-    PhotoVerifyJob.perform_later self.id, 0
-  end
-
   # Check if the photo should show up in the gallery
   def completed?
     !self.picture_processing? && self.delayed_processing_ok
+  end
+
+  def validate!
+    expected_count = Photo.attachment_definitions[:picture][:styles].count
+
+    # The validations seem to be half-broken for Delayed Paperclip so check
+    # that the expected objects were saved in S3
+    s3 = S3Helper.new
+    count = s3.count_objects self.picture.url
+
+    if count < expected_count
+      puts "#{count} out of #{expected_count} styles were saved"
+      return false
+    end
+
+    puts "#{count}/#{expected_count} styles saved"
+    self.delayed_processing_ok = true
+    self.save
+
+    true
   end
 end

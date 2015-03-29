@@ -22,17 +22,14 @@ class MailgunController < ApplicationController
 
     photos = []
     message.attachments.each do |attachment|
-      begin
-        photo = Photo.create(
-          title: message.subject,
-          sender: message.sender,
-          picture: attachment
-        )
+      photo = Photo.create(
+        title: message.subject,
+        sender: message.sender,
+        picture: attachment
+      )
+      if photo.persisted?
         photos << photo.id
-      rescue => e
-        puts "Exception while saving photo"
-        puts e
-        puts e.backtrace
+        PhotoVerifyJob.perform_later(photo.id, 0) unless photo.id.nil?
       end
     end
 

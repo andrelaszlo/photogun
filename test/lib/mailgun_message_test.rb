@@ -13,7 +13,7 @@ class MailgunMessageTest < ActionController::TestCase
   end
 
   test "environment configuration" do
-    ENV['MAILGUN_APIKEY'] = @@data[:api_key]
+    Rails.application.secrets.mailgun_api_key = @@data[:api_key]
     message = MailgunMessage.from_post @@data
     assert message.verified?, "Reading API key from environment works"
   end
@@ -24,6 +24,13 @@ class MailgunMessageTest < ActionController::TestCase
       bad_data[k] = ''
       message = MailgunMessage.from_post bad_data, api_key: bad_data[:api_key]
       assert_nil message, "Message signature is bad because %p changed" % k
+    end
+  end
+
+  test "no apikey" do
+    assert_raises ArgumentError do
+      Rails.application.secrets.mailgun_api_key = nil
+      message = MailgunMessage.from_post {}
     end
   end
 
